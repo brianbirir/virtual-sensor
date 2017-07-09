@@ -1,0 +1,24 @@
+{
+  "general":{
+      "broker_port":1883,
+      "broker_keep_alive":60
+  },
+  "env":{
+    "thingspeak":{
+      "broker_address":"mqtt.thingspeak.com",
+      "qos":0,
+      "connection_retain":0,
+      "clean_session":1,
+      "write_api":"L9D4X3ODQ87C2P52",
+      "channel_id":"267307"
+    },
+    "server":{
+      "broker_address":"138.197.6.61",
+      "qos":0,
+      "connection_retain":0,
+      "clean_session":1,
+      "broker_username":"ruleblox",
+      "broker_password":"ruleblox@2017#!"
+    }
+  }
+}
