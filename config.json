@@ -11,9 +11,9 @@
       "clean_session":1,
       "write_api":"L9D4X3ODQ87C2P52",
       "channel_id":"267307"
-    },
-    "server":{
-      "broker_address":"138.197.6.61",
+    }
+    "test":{
+      "broker_address":"127.0.0.1",
       "qos":0,
       "connection_retain":0,
       "clean_session":1,

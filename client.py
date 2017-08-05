@@ -18,7 +18,7 @@ dTemp = dummy_data.dummy_temp()
 dHumidity = dummy_data.dummy_humidity()
 
 # topics
-ruleblox_topic = 'Room/Si7021'
+ruleblox_topic = 'pyblox'
 
 
 # get configurations
@@ -31,7 +31,7 @@ def get_configs():
 general_conf = get_configs()['general']
 
 # get server environment configuration
-server_conf = get_configs()['env']['server']
+server_conf = get_configs()['env']['test']
 
 
 # subscribe to topic
