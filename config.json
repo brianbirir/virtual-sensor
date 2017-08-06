@@ -1,6 +1,6 @@
 {
   "general":{
-      "broker_port":5000,
+      "broker_port":1883,
       "broker_keep_alive":60
   },
   "env":{
@@ -13,7 +13,7 @@
       "channel_id":"267307"
     },
     "test":{
-      "broker_address":"127.0.0.1",
+      "broker_address":"138.197.6.61",
       "qos":0,
       "connection_retain":0,
       "clean_session":1,
