@@ -50,13 +50,17 @@ def publish_to_topic(topic, msg, qos):
 
 # collect payload data as JSON and publish
 def pub_payload():
-    Sensor_Data = {}
-    Sensor_Data['Sensor_ID'] = get_mac_address()
-    Sensor_Data['Humidity'] = dHumidity
-    Sensor_Data['Temperature'] = dTemp
-    sensor_json_data = json.dumps(Sensor_Data)
+    Sensor = {}
+    Data = {}
 
-    print "Publishing " + Sensor_Data['Sensor_ID'] + " sensor data: " + str(dHumidity) + "..." + str(dTemp) + "..."
+    Data['Humidity'] = dHumidity
+    Data['Temperature'] = dTemp
+    Sensor['Sensor_ID'] = get_mac_address()
+    # Sensor_Data['Sensor_ID'] = get_mac_address()
+    Sensor['Sensor_Data'] = Data # add data dictionary to sensor key
+    sensor_json_data = json.dumps(Sensor)
+
+    print "Publishing " + Sensor['Sensor_ID'] + " sensor data: " + str(dHumidity) + "..." + str(dTemp) + "..."
 
     subscribe_to_topic(ruleblox_topic, server_conf["qos"])
 
