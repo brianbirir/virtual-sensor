@@ -1,6 +1,6 @@
 {
   "general":{
-      "broker_port":1883,
+      "broker_port":5000,
       "broker_keep_alive":60
   },
   "env":{
@@ -11,7 +11,7 @@
       "clean_session":1,
       "write_api":"L9D4X3ODQ87C2P52",
       "channel_id":"267307"
-    }
+    },
     "test":{
       "broker_address":"127.0.0.1",
       "qos":0,

@@ -8,4 +8,5 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.network :forwarded_port, guest: 8080, host: 4000
+  config.vm.synced_folder "/", "/var/www/virtual_sensor"
 end
