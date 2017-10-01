@@ -53,14 +53,14 @@ def pub_payload():
     Sensor = {}
     Data = {}
 
-    Data['Humidity'] = dHumidity
-    Data['Temperature'] = dTemp
-    Sensor['Sensor_ID'] = get_mac_address()
+    Data['H'] = dHumidity
+    Data['T'] = dTemp
+    Sensor['ID'] = get_mac_address()
     # Sensor_Data['Sensor_ID'] = get_mac_address()
-    Sensor['Sensor_Data'] = Data # add data dictionary to sensor key
+    Sensor['Data'] = Data # add data dictionary to sensor key
     sensor_json_data = json.dumps(Sensor)
 
-    print "Publishing " + Sensor['Sensor_ID'] + " sensor data: " + str(dHumidity) + "..." + str(dTemp) + "..."
+    print "Publishing " + Sensor['ID'] + " sensor data: " + str(dHumidity) + "..." + str(dTemp) + "..."
 
     subscribe_to_topic(ruleblox_topic, server_conf["qos"])
 
