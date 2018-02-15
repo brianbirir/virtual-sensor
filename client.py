@@ -18,7 +18,7 @@ dTemp = dummy_data.dummy_temp()
 dHumidity = dummy_data.dummy_humidity()
 
 # topics
-ruleblox_topic = 'pyblox'
+dummy_topic = 'dummytopic'
 
 
 # get configurations
@@ -31,7 +31,7 @@ def get_configs():
 general_conf = get_configs()['general']
 
 # get server environment configuration
-server_conf = get_configs()['env']['test']
+server_conf = get_configs()['env']['local']
 
 
 # subscribe to topic
@@ -62,9 +62,9 @@ def pub_payload():
 
     print "Publishing " + Sensor['ID'] + " sensor data: " + str(dHumidity) + "..." + str(dTemp) + "..."
 
-    subscribe_to_topic(ruleblox_topic, server_conf["qos"])
+    # subscribe_to_topic(ruleblox_topic, server_conf["qos"])
 
-    publish_to_topic(ruleblox_topic, sensor_json_data, server_conf["qos"])
+    publish_to_topic(dummy_topic, sensor_json_data, server_conf["qos"])
 
 
 # The callback for when the client receives a CONNACK response from the server

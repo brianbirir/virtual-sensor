@@ -1,6 +1,6 @@
 {
   "general":{
-      "broker_port":7007,
+      "broker_port":1883,
       "broker_keep_alive":60
   },
   "env":{
@@ -19,6 +19,14 @@
       "clean_session":1,
       "broker_username":"ruleblox",
       "broker_password":"ruleblox@2017#!"
+    },
+    "local":{
+      "broker_address":"localhost",
+      "qos":0,
+      "connection_retain":0,
+      "clean_session":1,
+      "broker_username":"test",
+      "broker_password":"test2018"
     }
   }
 }
