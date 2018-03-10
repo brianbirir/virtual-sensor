@@ -6,16 +6,13 @@ import dummy_data
 import json
 from get_id import get_mac_address
 import os
+import re
 
 # create instance of the client class
 client_sensor = mqtt.Client()
 
 # get config current file path
 config_file_path = os.path.dirname(os.path.abspath(__file__))
-
-# get random dummy values for testing code
-dTemp = dummy_data.dummy_temp()
-dHumidity = dummy_data.dummy_humidity()
 
 # topics
 dummy_topic = 'pyblox'
@@ -53,14 +50,19 @@ def pub_payload():
     Sensor = {}
     Data = {}
 
-    Data['rel_hum'] = dHumidity
-    Data['temp'] = dTemp
-    Sensor['ID'] = get_mac_address()
-    # Sensor_Data['Sensor_ID'] = get_mac_address()
-    Sensor['Data'] = Data # add data dictionary to sensor key
+    Data['ID'] = re.sub('[!@#$:]', '', get_mac_address())
+    Data['RTC'] = dummy_data.rtc()
+    Data['LS'] = dummy_data.leak_sensor()
+    Data['FS'] = dummy_data.fire_sensor()
+    Data['SS'] = dummy_data.smoke_sensor()
+    Data['FL'] = dummy_data.waterflow_sensor()
+
+    Sensor['Gateway_ID'] = get_mac_address()
+    Sensor['Sensor_data'] = Data # add data dictionary to sensor key
+    
     sensor_json_data = json.dumps(Sensor)
 
-    print("Publishing " + Sensor['ID'] + " sensor data: " + str(dHumidity) + "..." + str(dTemp) + "...")
+    print("Publishing " + Sensor['Gateway_ID'] + " sensor data: " + str(Sensor['Sensor_data']))
 
     # subscribe_to_topic(ruleblox_topic, server_conf["qos"])
 

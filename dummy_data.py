@@ -1,10 +1,20 @@
-# Generate random temperature and humidity values
+# Generate random gateway values
 
 from random import randint
-
-def dummy_temp():
-    return randint(18,30)
+import time
 
 
-def dummy_humidity():
-    return randint(56,75)
+def leak_sensor():
+	return randint(0,1)
+
+def fire_sensor():
+	return randint(0,1)
+
+def smoke_sensor():
+	return randint(0,1)
+
+def waterflow_sensor():
+	return randint(0,1)
+
+def rtc():
+	return int(time.time())
