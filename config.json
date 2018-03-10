@@ -27,6 +27,14 @@
       "clean_session":1,
       "broker_username":"test",
       "broker_password":"test2018"
+    },
+    "ruleblox":{
+      "broker_address":"138.197.6.61",
+      "qos":0,
+      "connection_retain":0,
+      "clean_session":1,
+      "broker_username":"ruleblox",
+      "broker_password":"ruleblox@2017#!"
     }
   }
 }

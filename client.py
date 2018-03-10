@@ -18,7 +18,7 @@ dTemp = dummy_data.dummy_temp()
 dHumidity = dummy_data.dummy_humidity()
 
 # topics
-dummy_topic = 'dummytopic'
+dummy_topic = 'pyblox'
 
 
 # get configurations
@@ -31,7 +31,7 @@ def get_configs():
 general_conf = get_configs()['general']
 
 # get server environment configuration
-server_conf = get_configs()['env']['local']
+server_conf = get_configs()['env']['ruleblox']
 
 
 # subscribe to topic
@@ -53,14 +53,14 @@ def pub_payload():
     Sensor = {}
     Data = {}
 
-    Data['H'] = dHumidity
-    Data['T'] = dTemp
+    Data['rel_hum'] = dHumidity
+    Data['temp'] = dTemp
     Sensor['ID'] = get_mac_address()
     # Sensor_Data['Sensor_ID'] = get_mac_address()
     Sensor['Data'] = Data # add data dictionary to sensor key
     sensor_json_data = json.dumps(Sensor)
 
-    print "Publishing " + Sensor['ID'] + " sensor data: " + str(dHumidity) + "..." + str(dTemp) + "..."
+    print("Publishing " + Sensor['ID'] + " sensor data: " + str(dHumidity) + "..." + str(dTemp) + "...")
 
     # subscribe_to_topic(ruleblox_topic, server_conf["qos"])
 
