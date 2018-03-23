@@ -151,7 +151,7 @@ def connect_to_broker():
                         run_flag = False
                     break # break from while loop
 
-                time.sleep(1)
+                time.sleep(900)
                 count += 1
 
         if run_main:
