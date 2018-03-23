@@ -151,7 +151,7 @@ def connect_to_broker():
                         run_flag = False
                     break # break from while loop
 
-                time.sleep(900)
+                time.sleep(1)
                 count += 1
 
         if run_main:
@@ -159,7 +159,7 @@ def connect_to_broker():
                 # Do main loop
                 print "in main loop" # publish and subscribe here
                 pub_payload()
-                time.sleep(10)
+                time.sleep(900)
             # Added try block to catch keyboard interrupt  to break loop so we
             # don't leave loop thread running.
 
