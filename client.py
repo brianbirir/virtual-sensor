@@ -64,6 +64,8 @@ def pub_payload():
 
     print("Publishing " + Sensor['Gateway_ID'] + " sensor data: " + str(Sensor['Sensor_data']))
 
+    print(sensor_json_data)
+
     # subscribe_to_topic(ruleblox_topic, server_conf["qos"])
 
     publish_to_topic(dummy_topic, sensor_json_data, server_conf["qos"])
