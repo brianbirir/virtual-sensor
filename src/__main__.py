@@ -1,6 +1,6 @@
 """Entry point of application
 """
-from .publisher import Publisher
+from .gateway import Publisher
 from .sensor import Sensor
 from .config import Config
 

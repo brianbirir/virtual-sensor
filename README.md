@@ -1,5 +1,5 @@
-# Virtual Sensor
-A virtual sensor for testing mqtt clients.
+# Virtual IoT Sensor and Gateway
+A virtual sensor and gateway for testing MQTT clients. This application can be used to create one or more virtual sensors dynamically that are connected to a virtual gateway.
 
 ## Requirements
 
