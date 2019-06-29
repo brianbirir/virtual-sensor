@@ -1,38 +1,26 @@
 from paho.mqtt.client import Client
 from .helpers import logger as app_logger
+from .config import Config
 
 
-class Publisher:
-    def __init__(self, topic, qos, 
-                 broker_username, 
-                 broker_password,
-                 broker_port,
-                 broker_keepalive,
-                 broker_address):
+class Gateway:
+    cnf = Config()
+
+    def __init__(self, message_payload=None):
         self._client = Client()
-        self._topic = topic
-        self._qos = int(qos)
-        self._username = broker_username
-        self._password = broker_password
-        self._keepalive = int(broker_keepalive)
-        self._port = int(broker_port)
-        self._address = broker_address
+        self._message_payload = message_payload
 
-    def publish(self, message_payload):
+    def publish(self):
         """publishes sensor data to MQTT broker on a given topic
-        
-        Args:
-            message_payload (object): sensor data as json object
         """
-        self.connect_to_broker()
         try:
-            self._client.publish(self._topic, 
-                                 message_payload, 
-                                 self._qos)
+            self._client.publish(topic=self.cnf.BROKER_TOPIC,
+                                 payload=self._message_payload,
+                                 qos=self.cnf.BROKER_QOS)
             app_logger.info("Published: " +
-                            str(message_payload) + " " +
+                            str(self._message_payload) + " " +
                             "on topic: " + 
-                            str(self._topic))
+                            str(self.cnf.BROKER_TOPIC))
         except Exception as e:
             app_logger.error(str(e))
     
@@ -52,6 +40,7 @@ class Publisher:
         else:
             app_logger.error(return_code.get(rc, 
                              "Unable to identify return code error!"))
+
     @staticmethod
     def on_message(client, userdata, msg):
         app_logger.info("Message received: {}".format(str(msg.payload)))
@@ -76,15 +65,22 @@ class Publisher:
         self._client.on_log = self.on_log
         self._client.on_disconnect = self.on_disconnect
 
+        if self.cnf.BROKER_USERNAME is not None or self.cnf.BROKER_PASSWORD is not None:
+            try:
+                self._client.username_pw_set(self.cnf.BROKER_USERNAME,
+                                             self.cnf.BROKER_PASSWORD)
+                app_logger.info("Set up username and password for broker.")
+            except Exception as e:
+                app_logger.error(str(e))
+        else:
+            app_logger.info("No username or password.")
+
         try:
-            self._client.username_pw_set(self._username,
-                                         self._password)
+            self._client.connect(self.cnf.BROKER_URL,
+                                 self.cnf.BROKER_PORT,
+                                 self.cnf.BROKER_KEEP_ALIVE)
+            app_logger.info("Connected to broker.")
         except Exception as e:
             app_logger.error(str(e))
 
-        try:
-            self._client.connect(self._address,
-                                 self._port,
-                                 self._keepalive)
-        except Exception as e:
-            app_logger.error(str(e))
+        self.publish()

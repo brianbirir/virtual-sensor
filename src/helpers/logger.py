@@ -1,10 +1,13 @@
 """This helper module logs messages of different severity levels
 """
 import logging
+from ..config import Config
+
+cnf = Config()
 
 
-logger = logging.getLogger('ruleblox_broker')
-app_log_handler = logging.FileHandler('/tmp/iot_mqtt_subscriber.log')
+logger = logging.getLogger('virtual_sensor')
+app_log_handler = logging.FileHandler(cnf.LOGGING_FILE)
 app_log_formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 app_log_handler.setFormatter(app_log_formatter)
 logger.addHandler(app_log_handler)

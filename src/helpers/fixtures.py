@@ -1,5 +1,5 @@
-import time
-from random import randint
+from random import randint, choice
+from uuid import uuid4
 
 
 class Fixture:
@@ -10,21 +10,19 @@ class Fixture:
 		pass
 
 	@staticmethod
-	def leak_sensor():
-		return randint(0,1)
+	def sensor_measurement():
+		return randint(0, 10)
 
 	@staticmethod
-	def fire_sensor():
-		return randint(0,1)
+	def sensor_id():
+		return uuid4()
 
 	@staticmethod
-	def smoke_sensor():
-		return randint(0,1)
+	def measurement_unit():
+		units_list = ['degrees_celsius', '%', 'ppm']
+		return choice(units_list)
 
 	@staticmethod
-	def waterflow_sensor():
-		return randint(0,1)
-
-	@staticmethod
-	def rtc():
-		return int(time.time())
+	def sensor_type():
+		type_list = ['temperature', 'humidity', 'concentration']
+		return choice(type_list)
