@@ -1,6 +1,9 @@
 # Virtual IoT Sensor and Gateway
 A virtual sensor and gateway for testing MQTT clients. This application can be used to create one or more virtual sensors dynamically that are connected to a virtual gateway.
 
+## System Architecture
+![system architecture](docs/virtual_sensor_architecture.png?raw=true "System Architecture" | width=200)
+
 ## Requirements
 
 * [Paho MQTT Python client](http://www.eclipse.org/paho/clients/python/docs/)
@@ -26,7 +29,7 @@ Then run this python client from the root of the project folder to publish data 
 python -m src.main
 ```
 
-On the terminal output for `mosquitti_sub` you should see the following for example:
+On the terminal output for `mosquitto_sub` you should see the following for example:
 
 ```bash
 sensor/test {"sensor_id": "b14d5976-df7c-4d63-88cb-2f9d8c849d6f", "sensor_type": "humidity", "sensor_measurement_unit": "degrees_celsius", "sensor_measurement": 2}
