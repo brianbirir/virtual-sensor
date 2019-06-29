@@ -2,7 +2,7 @@
 A virtual sensor and gateway for testing MQTT clients. This application can be used to create one or more virtual sensors dynamically that are connected to a virtual gateway.
 
 ## System Architecture
-![system architecture](docs/virtual_sensor_architecture.png?raw=true "System Architecture" | width=200)
+![system architecture](/docs/virtual_sensor_architecture.png)
 
 ## Requirements
 
