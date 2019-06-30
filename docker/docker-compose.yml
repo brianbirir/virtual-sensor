@@ -1,0 +1,39 @@
+version: "3.7"
+
+services:
+  mosquitto_service:
+    container_name: mosquitto_service
+    image: eclipse-mosquitto:latest
+    restart: always
+    ports:
+      - "3881:1883"
+    expose:
+      - 1883
+    volumes:
+      - mosquitto_logs:/mosquitto/log
+      - mosquitto_data:/mosquitto/data
+      - ../configs/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - mosquitto_network
+
+  sensor_service:
+    container_name: virtual_sensor
+    image: virtual_sensor:v1
+    tty: true
+    build: 
+      context: ../src
+      dockerfile: ../docker/Dockerfile
+    env_file:
+      - ../.env
+    depends_on:
+      - mosquitto_service
+    networks:
+      - virtual_sensor
+
+networks:
+  virtual_sensor:
+  mosquitto_network:
+
+volumes:
+  mosquitto_logs:
+  mosquitto_data:
