@@ -1,3 +1,5 @@
+import json
+from uuid import uuid4
 from paho.mqtt.client import Client
 from .helpers import logger as app_logger
 from .config import Config
@@ -13,12 +15,17 @@ class Gateway:
     def publish(self):
         """publishes sensor data to MQTT broker on a given topic
         """
+        full_message_payload = {
+            'gateway_id': str(uuid4()),
+            'gateway_data': str(self._message_payload)
+        }
         try:
             self._client.publish(topic=self.cnf.BROKER_TOPIC,
-                                 payload=self._message_payload,
+                                 payload=json.dumps(full_message_payload),
                                  qos=self.cnf.BROKER_QOS)
             app_logger.info("Published: " +
-                            str(self._message_payload) + " " +
+                            str(full_message_payload) + 
+                            " " +
                             "on topic: " + 
                             str(self.cnf.BROKER_TOPIC))
         except Exception as e:

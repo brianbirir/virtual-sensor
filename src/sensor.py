@@ -1,4 +1,3 @@
-import json
 from uuid import uuid4
 from .gateway import Gateway
 from .helpers import logger as app_logger
@@ -37,7 +36,7 @@ class Sensor:
                               'sensor_measurement': self.__measurement
                               }
             app_logger.info("Generation of sensor payload!")
-            return json.dumps(sensor_payload)
+            return sensor_payload
         except Exception as e:
             app_logger.error(str(e))
 
